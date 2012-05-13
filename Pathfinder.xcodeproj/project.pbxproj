@@ -22,12 +22,12 @@
 		7BBF7259155F9B5D00CD0F74 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		7BBF725A155F9B5D00CD0F74 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7BBF725B155F9B5D00CD0F74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7BBF725E155F9B5D00CD0F74 /* Pathfinder-Info.plist */ = {isa = PBXFileReference; path = "Pathfinder-Info.plist"; sourceTree = "<group>"; };
+		7BBF725E155F9B5D00CD0F74 /* Pathfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pathfinder-Info.plist"; sourceTree = "<group>"; };
 		7BBF7260155F9B5E00CD0F74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7BBF7262155F9B5E00CD0F74 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7BBF7264155F9B5E00CD0F74 /* Pathfinder-Prefix.pch */ = {isa = PBXFileReference; path = "Pathfinder-Prefix.pch"; sourceTree = "<group>"; };
+		7BBF7264155F9B5E00CD0F74 /* Pathfinder-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pathfinder-Prefix.pch"; sourceTree = "<group>"; };
 		7BBF7266155F9B5E00CD0F74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		7BBF7268155F9B5E00CD0F74 /* Document.h */ = {isa = PBXFileReference; path = Document.h; sourceTree = "<group>"; };
+		7BBF7268155F9B5E00CD0F74 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		7BBF7269155F9B5E00CD0F74 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		7BBF726C155F9B5E00CD0F74 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		7BBF726F155F9B5E00CD0F74 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -84,10 +84,8 @@
 		7BBF725C155F9B5D00CD0F74 /* Pathfinder */ = {
 			isa = PBXGroup;
 			children = (
-				7BBF7268155F9B5E00CD0F74 /* Document.h */,
-				7BBF7269155F9B5E00CD0F74 /* Document.m */,
-				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
-				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
+				7BBF727E155F9DF400CD0F74 /* Classes */,
+				7BBF7280155F9E0D00CD0F74 /* Resources */,
 				7BBF725D155F9B5D00CD0F74 /* Supporting Files */,
 			);
 			path = Pathfinder;
@@ -103,6 +101,24 @@
 				7BBF7265155F9B5E00CD0F74 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7BBF727E155F9DF400CD0F74 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7BBF7268155F9B5E00CD0F74 /* Document.h */,
+				7BBF7269155F9B5E00CD0F74 /* Document.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		7BBF7280155F9E0D00CD0F74 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
+				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +316,7 @@
 				7BBF7275155F9B5E00CD0F74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
