@@ -14,7 +14,26 @@
 		7BBF726A155F9B5E00CD0F74 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF7269155F9B5E00CD0F74 /* Document.m */; };
 		7BBF726D155F9B5E00CD0F74 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF726B155F9B5E00CD0F74 /* Document.xib */; };
 		7BBF7270155F9B5E00CD0F74 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */; };
+		7BC5485F16619DEA0022E683 /* filelist in Resources */ = {isa = PBXBuildFile; fileRef = 7BC5485E16619DEA0022E683 /* filelist */; };
+		7BC548731661BDBC0022E683 /* PathEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC548721661BDBC0022E683 /* PathEntry.m */; };
+		7BC5487516625A6F0022E683 /* searchFile in Resources */ = {isa = PBXBuildFile; fileRef = 7BC5487416625A6F0022E683 /* searchFile */; };
+		7BC5487716625AFF0022E683 /* searchFile in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BC5487416625A6F0022E683 /* searchFile */; };
+		7BC5487816625B130022E683 /* filelist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BC5485E16619DEA0022E683 /* filelist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7BC5487616625AEC0022E683 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				7BC5487816625B130022E683 /* filelist in CopyFiles */,
+				7BC5487716625AFF0022E683 /* searchFile in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7BBF7252155F9B5D00CD0F74 /* Pathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +50,10 @@
 		7BBF7269155F9B5E00CD0F74 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		7BBF726C155F9B5E00CD0F74 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		7BBF726F155F9B5E00CD0F74 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7BC5485E16619DEA0022E683 /* filelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = filelist; path = Pathfinder/bin/filelist; sourceTree = "<group>"; };
+		7BC548711661BDBC0022E683 /* PathEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathEntry.h; sourceTree = "<group>"; };
+		7BC548721661BDBC0022E683 /* PathEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathEntry.m; sourceTree = "<group>"; };
+		7BC5487416625A6F0022E683 /* searchFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = searchFile; path = Pathfinder/bin/searchFile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				7BBF725C155F9B5D00CD0F74 /* Pathfinder */,
+				7BC5485D16619DC30022E683 /* Coprograms */,
 				7BBF7255155F9B5D00CD0F74 /* Frameworks */,
 				7BBF7253155F9B5D00CD0F74 /* Products */,
 			);
@@ -108,6 +132,8 @@
 			children = (
 				7BBF7268155F9B5E00CD0F74 /* Document.h */,
 				7BBF7269155F9B5E00CD0F74 /* Document.m */,
+				7BC548711661BDBC0022E683 /* PathEntry.h */,
+				7BC548721661BDBC0022E683 /* PathEntry.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -115,10 +141,19 @@
 		7BBF7280155F9E0D00CD0F74 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
 				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
+				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		7BC5485D16619DC30022E683 /* Coprograms */ = {
+			isa = PBXGroup;
+			children = (
+				7BC5487416625A6F0022E683 /* searchFile */,
+				7BC5485E16619DEA0022E683 /* filelist */,
+			);
+			name = Coprograms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +166,7 @@
 				7BBF724E155F9B5D00CD0F74 /* Sources */,
 				7BBF724F155F9B5D00CD0F74 /* Frameworks */,
 				7BBF7250155F9B5D00CD0F74 /* Resources */,
+				7BC5487616625AEC0022E683 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -147,7 +183,7 @@
 		7BBF7249155F9B5D00CD0F74 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = 7BBF724C155F9B5D00CD0F74 /* Build configuration list for PBXProject "Pathfinder" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -175,6 +211,8 @@
 				7BBF7267155F9B5E00CD0F74 /* Credits.rtf in Resources */,
 				7BBF726D155F9B5E00CD0F74 /* Document.xib in Resources */,
 				7BBF7270155F9B5E00CD0F74 /* MainMenu.xib in Resources */,
+				7BC5485F16619DEA0022E683 /* filelist in Resources */,
+				7BC5487516625A6F0022E683 /* searchFile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +225,7 @@
 			files = (
 				7BBF7263155F9B5E00CD0F74 /* main.m in Sources */,
 				7BBF726A155F9B5E00CD0F74 /* Document.m in Sources */,
+				7BC548731661BDBC0022E683 /* PathEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +317,7 @@
 		7BBF7274155F9B5E00CD0F74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pathfinder/Pathfinder-Prefix.pch";
 				INFOPLIST_FILE = "Pathfinder/Pathfinder-Info.plist";
@@ -289,6 +329,7 @@
 		7BBF7275155F9B5E00CD0F74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pathfinder/Pathfinder-Prefix.pch";
 				INFOPLIST_FILE = "Pathfinder/Pathfinder-Info.plist";

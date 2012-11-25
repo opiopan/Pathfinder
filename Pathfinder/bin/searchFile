@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if [ $# -ne 2 ];then
+    echo "usage: `basename $0` file|dir|all <keyword>" >&2
+    exit 1
+fi
+
+case "$1" in
+    file)
+	TYPE='$1 == "F"'
+	;;
+    dir)
+	TYPE='$1 == "D"'
+	;;
+    all)
+	TYPE=''
+	;;
+esac
+
+KEYWORD=`echo "$2" | awk '{print toupper($0)}'`
+
+awk '
+'"$TYPE"'{
+    base = toupper($0);
+    gsub(".*\/", "", base);
+    if (base ~ /'"$KEYWORD"'/){
+        print $0
+    }
+}
+'    

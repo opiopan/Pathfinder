@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ $# -eq 0 ];then
+    BASE="`pwd`"
+else
+    BASE="$1"
+fi
+
+find "$BASE" -type d | egrep -v '/\.' | awk '{print "D " $0}'
+find "$BASE" -type f | egrep -v '/\.' | awk '{print "F " $0}'

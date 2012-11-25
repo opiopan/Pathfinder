@@ -10,4 +10,8 @@
 
 @interface Document : NSDocument
 
+@property (weak) IBOutlet NSTableView   *searchResult;
+
+- (IBAction)onSearchFieldChange:(id)sender;
+
 @end
