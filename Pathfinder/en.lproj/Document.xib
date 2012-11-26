@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1080</int>
+		<int key="IBDocument.SystemTarget">1070</int>
 		<string key="IBDocument.SystemVersion">12C2034</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
@@ -329,8 +329,7 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{644, 423}</string>
 											<reference key="NSSuperview" ref="437715476"/>
-											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="895792356"/>
+											<reference key="NSNextKeyView" ref="179319852"/>
 											<string key="NSReuseIdentifierKey">_NS:1828</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -340,7 +339,6 @@
 												<int key="NSvFlags">256</int>
 												<string key="NSFrameSize">{644, 17}</string>
 												<reference key="NSSuperview" ref="179319852"/>
-												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="437715476"/>
 												<string key="NSReuseIdentifierKey">_NS:1830</string>
 												<reference key="NSTableView" ref="207063842"/>
@@ -410,7 +408,7 @@
 													</object>
 													<object class="NSTextFieldCell" key="NSDataCell" id="741172863">
 														<int key="NSCellFlags">337641536</int>
-														<int key="NSCellFlags2">2048</int>
+														<int key="NSCellFlags2">2560</int>
 														<string key="NSContents">Text Cell</string>
 														<reference key="NSSupport" ref="523034028"/>
 														<reference key="NSControlView" ref="207063842"/>
@@ -474,7 +472,7 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">17</double>
-											<int key="NSTvFlags">-692060160</int>
+											<int key="NSTvFlags">-624951296</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
 											<int key="NSColumnAutoresizingStyle">4</int>
@@ -487,7 +485,6 @@
 									</array>
 									<string key="NSFrame">{{1, 17}, {644, 423}}</string>
 									<reference key="NSSuperview" ref="762755208"/>
-									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="207063842"/>
 									<string key="NSReuseIdentifierKey">_NS:1826</string>
 									<reference key="NSDocView" ref="207063842"/>
@@ -499,7 +496,6 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 									<reference key="NSSuperview" ref="762755208"/>
-									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="990541731"/>
 									<string key="NSReuseIdentifierKey">_NS:1845</string>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -513,7 +509,6 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{1, 425}, {644, 15}}</string>
 									<reference key="NSSuperview" ref="762755208"/>
-									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:1847</string>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<int key="NSsFlags">1</int>
@@ -529,7 +524,6 @@
 									</array>
 									<string key="NSFrame">{{1, 0}, {644, 17}}</string>
 									<reference key="NSSuperview" ref="762755208"/>
-									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="19868896"/>
 									<string key="NSReuseIdentifierKey">_NS:1831</string>
 									<reference key="NSDocView" ref="19868896"/>
@@ -539,8 +533,7 @@
 							</array>
 							<string key="NSFrame">{{-1, -1}, {646, 441}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="179319852"/>
+							<reference key="NSNextKeyView" ref="437715476"/>
 							<string key="NSReuseIdentifierKey">_NS:1824</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="895792356"/>
@@ -555,7 +548,6 @@
 					</array>
 					<string key="NSFrameSize">{644, 439}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="762755208"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 900}}</string>
@@ -578,14 +570,6 @@
 					<int key="connectionID">18</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">searchField</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="437224471"/>
-					</object>
-					<int key="connectionID">100048</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">onSearchFieldChange:</string>
 						<reference key="source" ref="512844837"/>
@@ -600,6 +584,14 @@
 						<reference key="destination" ref="207063842"/>
 					</object>
 					<int key="connectionID">100052</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">searchField</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="68220885"/>
+					</object>
+					<int key="connectionID">100054</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -833,6 +825,7 @@
 					</object>
 				</object>
 				<string key="100038.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="100039.CustomClassName">SerchFieldWithProgressCell</string>
 				<string key="100039.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100040.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="100041.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -850,65 +843,15 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100052</int>
+			<int key="maxID">100054</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">Document</string>
-					<string key="superclassName">NSDocument</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">onSearchFieldChange:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">onSearchFieldChange:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">onSearchFieldChange:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">searchResult</string>
-						<string key="NS.object.0">NSTableView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">searchResult</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">searchResult</string>
-							<string key="candidateClassName">NSTableView</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/Document.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSDocument</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="moveDocumentToUbiquityContainer:">id</string>
-						<string key="saveDocumentAs:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="moveDocumentToUbiquityContainer:">
-							<string key="name">moveDocumentToUbiquityContainer:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="saveDocumentAs:">
-							<string key="name">saveDocumentAs:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSDocument.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<real value="1070" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">

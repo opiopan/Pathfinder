@@ -19,6 +19,8 @@
 		7BC5487516625A6F0022E683 /* searchFile in Resources */ = {isa = PBXBuildFile; fileRef = 7BC5487416625A6F0022E683 /* searchFile */; };
 		7BC5487716625AFF0022E683 /* searchFile in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BC5487416625A6F0022E683 /* searchFile */; };
 		7BC5487816625B130022E683 /* filelist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BC5485E16619DEA0022E683 /* filelist */; };
+		7BC5488016639C010022E683 /* Pathfinder.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BC5487F16639C010022E683 /* Pathfinder.icns */; };
+		7BF64CCF1663AD1600A25C99 /* SerchFieldWithProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +56,9 @@
 		7BC548711661BDBC0022E683 /* PathEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathEntry.h; sourceTree = "<group>"; };
 		7BC548721661BDBC0022E683 /* PathEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathEntry.m; sourceTree = "<group>"; };
 		7BC5487416625A6F0022E683 /* searchFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = searchFile; path = Pathfinder/bin/searchFile; sourceTree = "<group>"; };
+		7BC5487F16639C010022E683 /* Pathfinder.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pathfinder.icns; sourceTree = SOURCE_ROOT; };
+		7BF64CCD1663AD1600A25C99 /* SerchFieldWithProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerchFieldWithProgressCell.h; sourceTree = "<group>"; };
+		7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerchFieldWithProgressCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +139,8 @@
 				7BBF7269155F9B5E00CD0F74 /* Document.m */,
 				7BC548711661BDBC0022E683 /* PathEntry.h */,
 				7BC548721661BDBC0022E683 /* PathEntry.m */,
+				7BF64CCD1663AD1600A25C99 /* SerchFieldWithProgressCell.h */,
+				7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -143,6 +150,7 @@
 			children = (
 				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
 				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
+				7BC5487F16639C010022E683 /* Pathfinder.icns */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 				7BBF7270155F9B5E00CD0F74 /* MainMenu.xib in Resources */,
 				7BC5485F16619DEA0022E683 /* filelist in Resources */,
 				7BC5487516625A6F0022E683 /* searchFile in Resources */,
+				7BC5488016639C010022E683 /* Pathfinder.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +235,7 @@
 				7BBF7263155F9B5E00CD0F74 /* main.m in Sources */,
 				7BBF726A155F9B5E00CD0F74 /* Document.m in Sources */,
 				7BC548731661BDBC0022E683 /* PathEntry.m in Sources */,
+				7BF64CCF1663AD1600A25C99 /* SerchFieldWithProgressCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +283,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -300,6 +311,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;

@@ -7,10 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SerchFieldWithProgressCell.h"
 
 @interface Document : NSDocument
 
-@property (weak) IBOutlet NSTableView   *searchResult;
+@property (weak) IBOutlet NSTableView                *searchResult;
+@property (weak) IBOutlet SerchFieldWithProgressCell *searchField;
 
 - (IBAction)onSearchFieldChange:(id)sender;
 

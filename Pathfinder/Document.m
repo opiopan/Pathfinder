@@ -17,7 +17,10 @@
 
 @implementation Document
 {
+    NSProgressIndicator*    progressView;
+
     NSMutableArray* pathList;
+    BOOL            isAbsolutePath;
     BOOL            isUpdatingList;
     
     // 検索スレッド内で参照する変数
@@ -28,6 +31,7 @@
 }
 
 @synthesize searchResult;
+@synthesize searchField;
 
 //-----------------------------------------------------------------------------------------
 // NSDocument クラスメソッド：ドキュメントの振る舞い
@@ -75,7 +79,15 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
     [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
+
+    // Dragging sourceの登録
+    NSArray* dragSourceCapability = [NSArray arrayWithObject:NSFilenamesPboardType];
+    [searchResult registerForDraggedTypes:dragSourceCapability];
+    [searchResult setDraggingSourceOperationMask:NSDragOperationAll forLocal:NO];
+    
+    // 検索結果テーブルのアクション登録
+    [searchResult setTarget:self];
+    [searchResult setDoubleAction:@selector(onSearchResultDouble:)];
 }
 
 //----------------------------------------------------------------------
@@ -112,7 +124,7 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn
             row:(NSInteger)rowIndex
 {
-    if ([pathList count] - 1 < rowIndex){
+    if (isUpdatingList || !pathList || [pathList count] <= rowIndex){
         return nil;
     }
     
@@ -131,6 +143,34 @@
     }
     
     return nil;
+}
+
+//-----------------------------------------------------------------------------------------
+// 検索リストのDragging source実装
+//-----------------------------------------------------------------------------------------
+- (BOOL)tableView:(NSTableView*)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
+{
+    NSMutableArray* items = [NSMutableArray arrayWithCapacity:[rowIndexes count]];
+    
+    NSUInteger index = [rowIndexes firstIndex];
+    
+    while (index != NSNotFound){
+        PathEntry* pe = [pathList objectAtIndex:index];
+        
+        NSMutableString* path = [NSMutableString stringWithCapacity:256];
+        if (isAbsolutePath){
+            [path appendFormat:@"%@/%@", pe.path, pe.name];
+        }else{
+            [path appendFormat:@"%@/%@/%@", [[[self fileURL] path] stringByDeletingLastPathComponent], pe.path, pe.name];
+        }
+        [items addObject:[NSURL fileURLWithPath:path]];
+        
+        index = [rowIndexes indexGreaterThanIndex:index];
+    }
+    
+    [pboard writeObjects:items];
+    
+    return YES;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -163,6 +203,7 @@
             if (line[length - 1] == '\n'){
                 line[length - 1] = 0;
             }
+            isAbsolutePath = (line[0] == '/');
             PathEntry* pe = [[PathEntry alloc] initWithPhrase:[NSString stringWithUTF8String:line]];
             [pathList addObject:pe];
         }
@@ -187,7 +228,13 @@
         pathList = nil;
     }
     isUpdatingList = NO;
+    
+    [searchField setProgress:nil];
+    [progressView removeFromSuperview];
+    progressView = nil;
+    
     [searchResult reloadData];
+    [searchResult scrollToBeginningOfDocument:self];
 }
 
 - (void)escapeShellStringWithSource:(const char*)src destination:(char*)dest length:(int)length
@@ -195,7 +242,8 @@
     int i = 0;
     for (; *src && i < length - 1; i++, src++){
         if (*src == ' ' || *src == '(' || *src == ')' || *src == '&' ||
-            *src == '\\'){
+            *src == '\\' || *src == '|' || *src == '<' || *src == '>'||
+            *src == '*' || *src == '[' || *src == ']'){
             if (i + 1 >= length - 1){
                 break;
             }
@@ -205,7 +253,6 @@
     }
     dest[i] = 0;
 }
-
 
 //-----------------------------------------------------------------------------------------
 // 検索フィールド変更
@@ -220,11 +267,35 @@
             toolDir = [[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent];
             pathList = [NSMutableArray arrayWithCapacity:256];
             searchError = nil;
+            
+            progressView = [[NSProgressIndicator alloc] init];
+            [progressView setStyle:NSProgressIndicatorSpinningStyle];
+            [progressView setControlSize:NSSmallControlSize];
+            [progressView startAnimation:nil];
+            [progressView setHidden:NO];
+            [searchField setProgress:progressView];
+            [[searchField controlView] addSubview:progressView];
+            
             [self performSelectorInBackground:@selector(createPathListWithKey) withObject:nil];
+            [searchResult reloadData];
         }
     }else{
         [self beginErrorSheetWithTitle:@"Error" message:@"Another searching task has Already invoked."];
     }
+}
+
+//-----------------------------------------------------------------------------------------
+// 検索アクセラレータへの応答
+//-----------------------------------------------------------------------------------------
+- (void)performFindPanelAction:(id)sender
+{
+}
+
+//-----------------------------------------------------------------------------------------
+// 検索結果テーブルでのダブルクリック
+//-----------------------------------------------------------------------------------------
+- (void)onSearchResultDouble:(id)sender
+{
 }
 
 @end
