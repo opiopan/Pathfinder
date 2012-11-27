@@ -27,4 +27,16 @@
     return self;
 }
 
+- (NSString*) absolutePathWithBaseDirectory:(NSString*)base
+{
+    NSMutableString* apath = [NSMutableString stringWithCapacity:256];
+    if ([path characterAtIndex:0] == '/'){
+        [apath appendFormat:@"%@/%@", path, name];
+    }else{
+        [apath appendFormat:@"%@/%@/%@", base, path, name];
+    }
+    
+    return apath;
+}
+
 @end

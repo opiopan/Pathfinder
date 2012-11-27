@@ -20,7 +20,6 @@
     NSProgressIndicator*    progressView;
 
     NSMutableArray* pathList;
-    BOOL            isAbsolutePath;
     BOOL            isUpdatingList;
     
     // 検索スレッド内で参照する変数
@@ -32,6 +31,8 @@
 
 @synthesize searchResult;
 @synthesize searchField;
+@synthesize searchFieldControl;
+@synthesize toolbar;
 
 //-----------------------------------------------------------------------------------------
 // NSDocument クラスメソッド：ドキュメントの振る舞い
@@ -87,7 +88,7 @@
     
     // 検索結果テーブルのアクション登録
     [searchResult setTarget:self];
-    [searchResult setDoubleAction:@selector(onSearchResultDouble:)];
+    [searchResult setDoubleAction:@selector(performOpenItemsAction:)];
 }
 
 //----------------------------------------------------------------------
@@ -157,12 +158,7 @@
     while (index != NSNotFound){
         PathEntry* pe = [pathList objectAtIndex:index];
         
-        NSMutableString* path = [NSMutableString stringWithCapacity:256];
-        if (isAbsolutePath){
-            [path appendFormat:@"%@/%@", pe.path, pe.name];
-        }else{
-            [path appendFormat:@"%@/%@/%@", [[[self fileURL] path] stringByDeletingLastPathComponent], pe.path, pe.name];
-        }
+        NSString* path = [pe absolutePathWithBaseDirectory:[[[self fileURL] path] stringByDeletingLastPathComponent]];
         [items addObject:[NSURL fileURLWithPath:path]];
         
         index = [rowIndexes indexGreaterThanIndex:index];
@@ -203,7 +199,6 @@
             if (line[length - 1] == '\n'){
                 line[length - 1] = 0;
             }
-            isAbsolutePath = (line[0] == '/');
             PathEntry* pe = [[PathEntry alloc] initWithPhrase:[NSString stringWithUTF8String:line]];
             [pathList addObject:pe];
         }
@@ -255,7 +250,7 @@
 }
 
 //-----------------------------------------------------------------------------------------
-// 検索フィールド変更
+// 検索フィールド変更（検索開始）
 //-----------------------------------------------------------------------------------------
 - (IBAction)onSearchFieldChange:(id)sender
 {
@@ -285,17 +280,62 @@
 }
 
 //-----------------------------------------------------------------------------------------
-// 検索アクセラレータへの応答
+// 検索アクセラレータへの応答 （検索フィールドにフォーカス移動）
 //-----------------------------------------------------------------------------------------
 - (void)performFindPanelAction:(id)sender
 {
+    // 検索フィールドの表示状況を調査
+    BOOL isToolbarVisible = [toolbar isVisible];
+    BOOL isSearchFieldOnToolbar = NO;
+    BOOL isFlexSpaceOnToolbar = NO;
+    NSArray* items = [toolbar items];
+    for (int i = 0; i < [items count]; i++){
+        NSString* identifier = [[items objectAtIndex:i] itemIdentifier];
+        if ([identifier isEqualToString:@"SearchField"]){
+            isSearchFieldOnToolbar = YES;
+        }else if ([identifier isEqualToString:@"NSToolbarFlexibleSpaceItem"]){
+            isFlexSpaceOnToolbar = YES;
+        }
+    }
+    
+    // ツールバー上に検索フィールドが存在しない場合は追加
+    if (!isSearchFieldOnToolbar){
+        if (!isFlexSpaceOnToolbar){
+            [toolbar insertItemWithItemIdentifier:@"NSToolbarFlexibleSpaceItem"
+                                          atIndex:[[toolbar items] count]];
+        }
+        [toolbar insertItemWithItemIdentifier:@"SearchField"
+                                      atIndex:[[toolbar items] count]];
+    }
+    
+    // ツールバー未表示の場合は表示
+    if (!isToolbarVisible){
+        [toolbar setVisible:YES];
+    }
+    
+    // 検索フィールドをfirst responderに変更
+    [[self windowForSheet] makeFirstResponder:searchFieldControl];
 }
 
 //-----------------------------------------------------------------------------------------
-// 検索結果テーブルでのダブルクリック
+// 検索結果アイテムのオープン
 //-----------------------------------------------------------------------------------------
-- (void)onSearchResultDouble:(id)sender
+- (void)performOpenItemsAction:(id)sender
 {
+    NSIndexSet* indexes = [searchResult selectedRowIndexes];
+    NSUInteger i = [indexes firstIndex];
+    while (i != NSNotFound){
+        PathEntry* pe = [pathList objectAtIndex:i];
+        NSString* path = [pe absolutePathWithBaseDirectory:
+                          [[[self fileURL] path] stringByDeletingLastPathComponent]];
+        char epath[2048];
+        [self escapeShellStringWithSource:[path UTF8String]
+                              destination:epath length:sizeof(epath)];
+        NSString* cmd = [NSString stringWithFormat:@"open %@", [NSString stringWithUTF8String:epath]];
+        system([cmd UTF8String]);
+
+        i = [indexes indexGreaterThanIndex:i];
+    }
 }
 
 @end

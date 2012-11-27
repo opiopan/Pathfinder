@@ -15,5 +15,6 @@
 @property (strong, readonly) NSString* path;
 
 - (id) initWithPhrase:(NSString*)phrase;
+- (NSString*) absolutePathWithBaseDirectory:(NSString*)base;
 
 @end

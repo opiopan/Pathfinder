@@ -11,8 +11,10 @@
 
 @interface Document : NSDocument
 
-@property (weak) IBOutlet NSTableView                *searchResult;
-@property (weak) IBOutlet SerchFieldWithProgressCell *searchField;
+@property (weak) IBOutlet NSTableView*                searchResult;
+@property (weak) IBOutlet SerchFieldWithProgressCell* searchField;
+@property (weak) IBOutlet NSSearchField*              searchFieldControl;
+@property (weak) IBOutlet NSToolbar*                  toolbar;
 
 - (IBAction)onSearchFieldChange:(id)sender;
 
