@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B14691F1665003500E07CB8 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B14691E1665003500E07CB8 /* pin.png */; };
 		7BBF7257155F9B5D00CD0F74 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBF7256155F9B5D00CD0F74 /* Cocoa.framework */; };
 		7BBF7261155F9B5E00CD0F74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF725F155F9B5E00CD0F74 /* InfoPlist.strings */; };
 		7BBF7263155F9B5E00CD0F74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF7262155F9B5E00CD0F74 /* main.m */; };
@@ -38,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B14691E1665003500E07CB8 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = resources/pin.png; sourceTree = "<group>"; };
 		7BBF7252155F9B5D00CD0F74 /* Pathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BBF7256155F9B5D00CD0F74 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7BBF7259155F9B5D00CD0F74 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -148,6 +150,7 @@
 		7BBF7280155F9E0D00CD0F74 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7B14691E1665003500E07CB8 /* pin.png */,
 				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
 				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
 				7BC5487F16639C010022E683 /* Pathfinder.icns */,
@@ -222,6 +225,7 @@
 				7BC5485F16619DEA0022E683 /* filelist in Resources */,
 				7BC5487516625A6F0022E683 /* searchFile in Resources */,
 				7BC5488016639C010022E683 /* Pathfinder.icns in Resources */,
+				7B14691F1665003500E07CB8 /* pin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

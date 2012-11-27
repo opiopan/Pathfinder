@@ -15,6 +15,7 @@
 @property (weak) IBOutlet SerchFieldWithProgressCell* searchField;
 @property (weak) IBOutlet NSSearchField*              searchFieldControl;
 @property (weak) IBOutlet NSToolbar*                  toolbar;
+@property (weak) IBOutlet NSButtonCell*               pinButton;
 
 - (IBAction)onSearchFieldChange:(id)sender;
 

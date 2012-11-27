@@ -19,6 +19,8 @@
 {
     NSProgressIndicator*    progressView;
 
+    BOOL            isFolder;
+    BOOL            isPinned;
     NSMutableArray* pathList;
     BOOL            isUpdatingList;
     
@@ -33,6 +35,9 @@
 @synthesize searchField;
 @synthesize searchFieldControl;
 @synthesize toolbar;
+@synthesize pinButton;
+
+static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 
 //-----------------------------------------------------------------------------------------
 // NSDocument クラスメソッド：ドキュメントの振る舞い
@@ -87,6 +92,9 @@
     // 検索結果テーブルのアクション登録
     [searchResult setTarget:self];
     [searchResult setDoubleAction:@selector(performOpenItemsAction:)];
+    
+    // Pinボタンの状態設定
+    [pinButton setState:isPinned ? NSOnState : NSOffState];
 }
 
 //----------------------------------------------------------------------
@@ -102,9 +110,21 @@
 //-----------------------------------------------------------------------------------------
 // ドキュメントロード
 //-----------------------------------------------------------------------------------------
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
+- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-    return YES;
+    if ([typeName isEqualToString:@"public.folder"]){
+        isFolder = YES;
+        NSString* pinnedPath = [NSMutableString stringWithFormat:@"%@/%@",
+                                [absoluteURL path], PINNED_PFLIST];
+        struct stat statbuf;
+        int rc = stat([pinnedPath UTF8String], &statbuf);
+        isPinned = (rc == 0 && (statbuf.st_mode & S_IFMT) == S_IFREG);
+    }else{
+        isFolder = NO;
+        isPinned = YES;
+    }
+        
+    return YES;    
 }
 
 //-----------------------------------------------------------------------------------------
@@ -177,7 +197,17 @@
         char escapedStr[1024];
         [self escapeShellStringWithSource:[target UTF8String]
                               destination:escapedStr length:sizeof(escapedStr)];
-        [cmd appendFormat:@"cat %s | %@/searchFile all ", escapedStr, toolDir];
+        if (isPinned){
+            // ピン留めファイルから検索
+            if (isFolder){
+                [cmd appendFormat:@"cat %s/%@ | %@/searchFile all ", escapedStr, PINNED_PFLIST, toolDir];
+            }else{
+                [cmd appendFormat:@"cat %s | %@/searchFile all ", escapedStr, toolDir];
+            }
+        }else{
+            // フォルダを探索
+            [cmd appendFormat:@"%@/filelist %s | %@/searchFile all ", toolDir, escapedStr, toolDir];
+        }
         [self escapeShellStringWithSource:[keyword UTF8String]
                               destination:escapedStr length:sizeof(escapedStr)];
         [cmd appendString:[NSString stringWithUTF8String:escapedStr]];
@@ -349,7 +379,7 @@
 }
 
 //-----------------------------------------------------------------------------------------
-// ファイルのオープン（デフォルトアクションの実行)
+// アイテムのオープン（デフォルトアクションの実行)
 //-----------------------------------------------------------------------------------------
 - (void)openItem:(NSString*)path
 {
