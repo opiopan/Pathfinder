@@ -72,8 +72,6 @@
 
 - (NSString *)windowNibName
 {
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
     return @"Document";
 }
 
@@ -100,7 +98,6 @@
                               nil, nil,
                               nil, @"%@", message);
 }
-
 
 //-----------------------------------------------------------------------------------------
 // ドキュメントロード
@@ -172,7 +169,7 @@
 //-----------------------------------------------------------------------------------------
 // 検索結果リスト生成
 //-----------------------------------------------------------------------------------------
-- (void)createPathListWithKey
+- (void)createPathList
 {
     @autoreleasepool {
         // 検索コマンド文字列生成
@@ -271,11 +268,11 @@
             [searchField setProgress:progressView];
             [[searchField controlView] addSubview:progressView];
             
-            [self performSelectorInBackground:@selector(createPathListWithKey) withObject:nil];
+            [self performSelectorInBackground:@selector(createPathList) withObject:nil];
             [searchResult reloadData];
         }
     }else{
-        [self beginErrorSheetWithTitle:@"Error" message:@"Another searching task has Already invoked."];
+        [self beginErrorSheetWithTitle:@"Error" message:@"Another searching task has already invoked."];
     }
 }
 
@@ -328,14 +325,39 @@
         PathEntry* pe = [pathList objectAtIndex:i];
         NSString* path = [pe absolutePathWithBaseDirectory:
                           [[[self fileURL] path] stringByDeletingLastPathComponent]];
-        char epath[2048];
-        [self escapeShellStringWithSource:[path UTF8String]
-                              destination:epath length:sizeof(epath)];
-        NSString* cmd = [NSString stringWithFormat:@"open %@", [NSString stringWithUTF8String:epath]];
-        system([cmd UTF8String]);
+        [self openItem:path];
 
         i = [indexes indexGreaterThanIndex:i];
     }
+}
+
+//-----------------------------------------------------------------------------------------
+// 検査結果が格納されるフォルダーのオープン
+//-----------------------------------------------------------------------------------------
+- (void)performOpenFolderAction:(id)sender
+{
+    NSIndexSet* indexes = [searchResult selectedRowIndexes];
+    NSUInteger i = [indexes firstIndex];
+    while (i != NSNotFound){
+        PathEntry* pe = [pathList objectAtIndex:i];
+        NSString* path = [pe absolutePathWithBaseDirectory:
+                          [[[self fileURL] path] stringByDeletingLastPathComponent]];
+        [self openItem:[path stringByDeletingLastPathComponent]];
+        
+        i = [indexes indexGreaterThanIndex:i];
+    }
+}
+
+//-----------------------------------------------------------------------------------------
+// ファイルのオープン（デフォルトアクションの実行)
+//-----------------------------------------------------------------------------------------
+- (void)openItem:(NSString*)path
+{
+    char epath[2048];
+    [self escapeShellStringWithSource:[path UTF8String]
+                          destination:epath length:sizeof(epath)];
+    NSString* cmd = [NSString stringWithFormat:@"open %@", [NSString stringWithUTF8String:epath]];
+    system([cmd UTF8String]);
 }
 
 @end
