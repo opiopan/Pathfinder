@@ -74,11 +74,9 @@
 							<string key="NSToolbarItemPaletteLabel">Filter</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSSegmentedControl" key="NSToolbarItemView" id="695329708">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {71, 25}}</string>
-								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:2177</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSegmentedCell" key="NSCell" id="93575895">
@@ -127,11 +125,9 @@
 							<string key="NSToolbarItemPaletteLabel">Search</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSSearchField" key="NSToolbarItemView" id="437224471">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {200, 22}}</string>
-								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:918</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSearchFieldCell" key="NSCell" id="68220885">
@@ -221,11 +217,9 @@
 							<string key="NSToolbarItemPaletteLabel">Pin</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="295977433">
-								<reference key="NSNextResponder"/>
+								<nil key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {31, 25}}</string>
-								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:22</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="225250604">
@@ -347,7 +341,7 @@
 							</object>
 						</object>
 					</dictionary>
-					<array class="NSMutableArray" key="NSToolbarIBAllowedItems">
+					<array key="NSToolbarIBAllowedItems">
 						<reference ref="853014249"/>
 						<reference ref="622434727"/>
 						<reference ref="294166470"/>
@@ -382,7 +376,7 @@
 											<string key="NSFrameSize">{644, 423}</string>
 											<reference key="NSSuperview" ref="437715476"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="895792356"/>
+											<reference key="NSNextKeyView" ref="179319852"/>
 											<string key="NSReuseIdentifierKey">_NS:1828</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -525,7 +519,7 @@
 													<bytes key="NSWhite">MC41AA</bytes>
 												</object>
 											</object>
-											<double key="NSRowHeight">17</double>
+											<double key="NSRowHeight">16</double>
 											<int key="NSTvFlags">-624951296</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
@@ -592,14 +586,14 @@
 							<string key="NSFrame">{{-1, -1}, {646, 441}}</string>
 							<reference key="NSSuperview" ref="568628114"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="179319852"/>
+							<reference key="NSNextKeyView" ref="437715476"/>
 							<string key="NSReuseIdentifierKey">_NS:1824</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="895792356"/>
 							<reference key="NSHScroller" ref="990541731"/>
 							<reference key="NSContentView" ref="437715476"/>
 							<reference key="NSHeaderClipView" ref="179319852"/>
-							<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
+							<bytes key="NSScrollAmts">QSAAAEEgAABBkAAAQZAAAA</bytes>
 							<double key="NSMinMagnification">0.25</double>
 							<double key="NSMaxMagnification">4</double>
 							<double key="NSMagnification">1</double>
