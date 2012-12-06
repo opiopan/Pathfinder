@@ -14,6 +14,8 @@
 
 #import "Document.h"
 #import "PathEntry.h"
+#import "PinnedFile.h"
+#import "ChildProcess.h"
 
 @implementation Document
 {
@@ -21,6 +23,7 @@
 
     BOOL            isFolder;
     BOOL            isPinned;
+    PinnedFile*     pinnedFile;
     NSMutableArray* pathList;
     BOOL            isUpdatingList;
     
@@ -36,8 +39,6 @@
 @synthesize searchFieldControl;
 @synthesize toolbar;
 @synthesize pinButton;
-
-static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 
 //-----------------------------------------------------------------------------------------
 // NSDocument クラスメソッド：ドキュメントの振る舞い
@@ -69,6 +70,7 @@ static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 {
     self = [super init];
     if (self) {
+        pinnedFile = nil;
         isUpdatingList = NO;
         pathList = nil;
     }
@@ -102,7 +104,7 @@ static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 //----------------------------------------------------------------------
 - (void)beginErrorSheetWithTitle:(NSString *)title message:(NSString *)message
 {
-    NSBeginCriticalAlertSheet(title, @"", @"", @"", nil, self,
+    NSBeginCriticalAlertSheet(title, @"", @"", @"", [self windowForSheet], self,
                               nil, nil,
                               nil, @"%@", message);
 }
@@ -114,11 +116,8 @@ static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 {
     if ([typeName isEqualToString:@"public.folder"]){
         isFolder = YES;
-        NSString* pinnedPath = [NSMutableString stringWithFormat:@"%@/%@",
-                                [absoluteURL path], PINNED_PFLIST];
-        struct stat statbuf;
-        int rc = stat([pinnedPath UTF8String], &statbuf);
-        isPinned = (rc == 0 && (statbuf.st_mode & S_IFMT) == S_IFREG);
+        pinnedFile = [PinnedFile pinnedFileWithDirectory:absoluteURL];
+        isPinned = [pinnedFile exist];
     }else{
         isFolder = NO;
         isPinned = YES;
@@ -193,45 +192,36 @@ static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 {
     @autoreleasepool {
         // 検索コマンド文字列生成
-        NSMutableString* cmd = [NSMutableString stringWithCapacity:1024];
-        char escapedStr[1024];
-        [self escapeShellStringWithSource:[target UTF8String]
-                              destination:escapedStr length:sizeof(escapedStr)];
+        ChildProcess* cmd = [[ChildProcess alloc] init];
+        NSString* escapedTarget = [ChildProcess escapedString:target];
         if (isPinned){
             // ピン留めファイルから検索
             if (isFolder){
-                [cmd appendFormat:@"cat %s/%@ | %@/searchFile all ", escapedStr, PINNED_PFLIST, toolDir];
+                [cmd appendCommandWithFormat:@"cat %@/%@ | %@/searchFile all ",
+                 escapedTarget, [[pinnedFile.url path] lastPathComponent], toolDir];
             }else{
-                [cmd appendFormat:@"cat %s | %@/searchFile all ", escapedStr, toolDir];
+                [cmd appendCommandWithFormat:@"cat %a | %@/searchFile all ", escapedTarget, toolDir];
             }
         }else{
             // フォルダを探索
-            [cmd appendFormat:@"%@/filelist %s | %@/searchFile all ", toolDir, escapedStr, toolDir];
+            [cmd appendCommandWithFormat:@"%@/filelist %@ | %@/searchFile all ", toolDir, escapedTarget, toolDir];
         }
-        [self escapeShellStringWithSource:[keyword UTF8String]
-                              destination:escapedStr length:sizeof(escapedStr)];
-        [cmd appendString:[NSString stringWithUTF8String:escapedStr]];
+        [cmd appendCommandWithString:[ChildProcess escapedString:keyword]];
         
         // 検索コマンド起動
-        FILE* in = popen([cmd UTF8String], "r");
-        if (!in){
+        if (![cmd executeForInput]){
             searchError = @"An error occurred when invoking search task.";
             goto END;
         }
         
         // 検索結果リスト生成
-        char line[2048];
-        while (fgets(line, sizeof(line), in)){
-            size_t length = strlen(line);
-            if (line[length - 1] == '\n'){
-                line[length - 1] = 0;
-            }
-            PathEntry* pe = [[PathEntry alloc] initWithPhrase:[NSString stringWithUTF8String:line]];
+        for (NSString* line = [cmd nextLine]; line; line = [cmd nextLine]){
+            PathEntry* pe = [[PathEntry alloc] initWithPhrase:line];
             [pathList addObject:pe];
         }
         
         // 検索コマンドの終了コード判定
-        int rc = pclose(in);
+        int rc = [cmd result];
         if (rc < 0 || !WIFEXITED(rc) || WEXITSTATUS(rc) != 0){
             searchError = @"An error occurred while searching files.";
             goto END;
@@ -257,23 +247,6 @@ static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
     
     [searchResult reloadData];
     [searchResult scrollToBeginningOfDocument:self];
-}
-
-- (void)escapeShellStringWithSource:(const char*)src destination:(char*)dest length:(int)length
-{
-    int i = 0;
-    for (; *src && i < length - 1; i++, src++){
-        if (*src == ' ' || *src == '(' || *src == ')' || *src == '&' ||
-            *src == '\\' || *src == '|' || *src == '<' || *src == '>'||
-            *src == '*' || *src == '[' || *src == ']'){
-            if (i + 1 >= length - 1){
-                break;
-            }
-            dest[i++] = '\\';
-        }
-        dest[i] = *src;
-    }
-    dest[i] = 0;
 }
 
 //-----------------------------------------------------------------------------------------
@@ -383,11 +356,52 @@ static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 //-----------------------------------------------------------------------------------------
 - (void)openItem:(NSString*)path
 {
-    char epath[2048];
-    [self escapeShellStringWithSource:[path UTF8String]
-                          destination:epath length:sizeof(epath)];
-    NSString* cmd = [NSString stringWithFormat:@"open %@", [NSString stringWithUTF8String:epath]];
-    system([cmd UTF8String]);
+    ChildProcess* cmd = [ChildProcess childProcessWithFormat:@"open %@", [ChildProcess escapedString:path]];
+    [cmd execute];
+}
+
+//-----------------------------------------------------------------------------------------
+// Pinボタン押下
+//-----------------------------------------------------------------------------------------
+- (IBAction)onPin:(id)sender
+{
+    if (isFolder){
+        if (isPinned){
+            // ピン留めファイルの削除確認
+            NSBeginAlertSheet(@"Confirmation", @"No", @"Yes", nil,
+                              [self windowForSheet], self,
+                              nil, @selector(confirmDeletePinnedFileSheetEnd:returnCode:contextInfo:),
+                              nil, @"Do you want to delete pinned file?");
+        }else{
+            if ([pinnedFile exist]){
+                isPinned = YES;
+            }else{
+                // ピン留めファイル作成開始
+                [pinnedFile createPinnedFileModalForWindow:[self windowForSheet]
+                                             modalDelegate:self didEndSelector:@selector(onEndCreatingPinnedFile)];
+            }
+        }
+    }
+    
+    [sender setState:isPinned ? NSOnState : NSOffState];
+}
+
+- (BOOL)confirmDeletePinnedFileSheetEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void*)contextInfo
+{
+    if (returnCode == NSAlertAlternateReturn){
+        // ピン留めファイル削除
+        [pinnedFile remove];
+    }
+    isPinned = NO;
+    [pinButton setState:NSOffState];
+
+    return YES;
+}
+
+- (void) onEndCreatingPinnedFile
+{
+    isPinned = [pinnedFile exist];
+    [pinButton setState:isPinned ? NSOnState : NSOffState];
 }
 
 @end

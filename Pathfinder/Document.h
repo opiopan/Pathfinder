@@ -18,5 +18,6 @@
 @property (weak) IBOutlet NSButtonCell*               pinButton;
 
 - (IBAction)onSearchFieldChange:(id)sender;
+- (IBAction)onPin:(id)sender;
 
 @end

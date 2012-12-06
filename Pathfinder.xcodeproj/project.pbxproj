@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7B14691F1665003500E07CB8 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B14691E1665003500E07CB8 /* pin.png */; };
+		7B6BCC8E16697AF100B573C5 /* CreatingPinnedFile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B6BCC8D16697AF100B573C5 /* CreatingPinnedFile.xib */; };
+		7B84549E166A2A1600D406B2 /* PinnedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B84549D166A2A1600D406B2 /* PinnedFile.m */; };
+		7B8454A2166A4A4E00D406B2 /* CreatingPinnedFileSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8454A1166A4A4E00D406B2 /* CreatingPinnedFileSheet.m */; };
 		7BBF7257155F9B5D00CD0F74 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBF7256155F9B5D00CD0F74 /* Cocoa.framework */; };
 		7BBF7261155F9B5E00CD0F74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF725F155F9B5E00CD0F74 /* InfoPlist.strings */; };
 		7BBF7263155F9B5E00CD0F74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF7262155F9B5E00CD0F74 /* main.m */; };
@@ -21,6 +24,7 @@
 		7BC5487716625AFF0022E683 /* searchFile in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BC5487416625A6F0022E683 /* searchFile */; };
 		7BC5487816625B130022E683 /* filelist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7BC5485E16619DEA0022E683 /* filelist */; };
 		7BC5488016639C010022E683 /* Pathfinder.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BC5487F16639C010022E683 /* Pathfinder.icns */; };
+		7BE2F263166EB1B500295655 /* ChildProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2F262166EB1B500295655 /* ChildProcess.m */; };
 		7BF64CCF1663AD1600A25C99 /* SerchFieldWithProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +44,11 @@
 
 /* Begin PBXFileReference section */
 		7B14691E1665003500E07CB8 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = resources/pin.png; sourceTree = "<group>"; };
+		7B6BCC8D16697AF100B573C5 /* CreatingPinnedFile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatingPinnedFile.xib; sourceTree = "<group>"; };
+		7B84549C166A2A1600D406B2 /* PinnedFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedFile.h; sourceTree = "<group>"; };
+		7B84549D166A2A1600D406B2 /* PinnedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedFile.m; sourceTree = "<group>"; };
+		7B8454A0166A4A4E00D406B2 /* CreatingPinnedFileSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatingPinnedFileSheet.h; sourceTree = "<group>"; };
+		7B8454A1166A4A4E00D406B2 /* CreatingPinnedFileSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatingPinnedFileSheet.m; sourceTree = "<group>"; };
 		7BBF7252155F9B5D00CD0F74 /* Pathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BBF7256155F9B5D00CD0F74 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7BBF7259155F9B5D00CD0F74 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -59,6 +68,8 @@
 		7BC548721661BDBC0022E683 /* PathEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathEntry.m; sourceTree = "<group>"; };
 		7BC5487416625A6F0022E683 /* searchFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = searchFile; path = Pathfinder/bin/searchFile; sourceTree = "<group>"; };
 		7BC5487F16639C010022E683 /* Pathfinder.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Pathfinder.icns; sourceTree = SOURCE_ROOT; };
+		7BE2F261166EB1B500295655 /* ChildProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildProcess.h; sourceTree = "<group>"; };
+		7BE2F262166EB1B500295655 /* ChildProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildProcess.m; sourceTree = "<group>"; };
 		7BF64CCD1663AD1600A25C99 /* SerchFieldWithProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerchFieldWithProgressCell.h; sourceTree = "<group>"; };
 		7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerchFieldWithProgressCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				7BBF725C155F9B5D00CD0F74 /* Pathfinder */,
-				7BC5485D16619DC30022E683 /* Coprograms */,
 				7BBF7255155F9B5D00CD0F74 /* Frameworks */,
 				7BBF7253155F9B5D00CD0F74 /* Products */,
 			);
@@ -118,6 +128,7 @@
 				7BBF727E155F9DF400CD0F74 /* Classes */,
 				7BBF7280155F9E0D00CD0F74 /* Resources */,
 				7BBF725D155F9B5D00CD0F74 /* Supporting Files */,
+				7BC5485D16619DC30022E683 /* Coprograms */,
 			);
 			path = Pathfinder;
 			sourceTree = "<group>";
@@ -141,8 +152,14 @@
 				7BBF7269155F9B5E00CD0F74 /* Document.m */,
 				7BC548711661BDBC0022E683 /* PathEntry.h */,
 				7BC548721661BDBC0022E683 /* PathEntry.m */,
+				7B84549C166A2A1600D406B2 /* PinnedFile.h */,
+				7B84549D166A2A1600D406B2 /* PinnedFile.m */,
+				7B8454A0166A4A4E00D406B2 /* CreatingPinnedFileSheet.h */,
+				7B8454A1166A4A4E00D406B2 /* CreatingPinnedFileSheet.m */,
 				7BF64CCD1663AD1600A25C99 /* SerchFieldWithProgressCell.h */,
 				7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */,
+				7BE2F261166EB1B500295655 /* ChildProcess.h */,
+				7BE2F262166EB1B500295655 /* ChildProcess.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -150,9 +167,10 @@
 		7BBF7280155F9E0D00CD0F74 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7B14691E1665003500E07CB8 /* pin.png */,
 				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
 				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
+				7B6BCC8D16697AF100B573C5 /* CreatingPinnedFile.xib */,
+				7B14691E1665003500E07CB8 /* pin.png */,
 				7BC5487F16639C010022E683 /* Pathfinder.icns */,
 			);
 			name = Resources;
@@ -165,6 +183,7 @@
 				7BC5485E16619DEA0022E683 /* filelist */,
 			);
 			name = Coprograms;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +245,7 @@
 				7BC5487516625A6F0022E683 /* searchFile in Resources */,
 				7BC5488016639C010022E683 /* Pathfinder.icns in Resources */,
 				7B14691F1665003500E07CB8 /* pin.png in Resources */,
+				7B6BCC8E16697AF100B573C5 /* CreatingPinnedFile.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +260,9 @@
 				7BBF726A155F9B5E00CD0F74 /* Document.m in Sources */,
 				7BC548731661BDBC0022E683 /* PathEntry.m in Sources */,
 				7BF64CCF1663AD1600A25C99 /* SerchFieldWithProgressCell.m in Sources */,
+				7B84549E166A2A1600D406B2 /* PinnedFile.m in Sources */,
+				7B8454A2166A4A4E00D406B2 /* CreatingPinnedFileSheet.m in Sources */,
+				7BE2F263166EB1B500295655 /* ChildProcess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
