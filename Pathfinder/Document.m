@@ -24,14 +24,19 @@
     BOOL            isFolder;
     BOOL            isPinned;
     PinnedFile*     pinnedFile;
+    NSString*       baseDir;
     NSMutableArray* pathList;
     BOOL            isUpdatingList;
+    
+    NSIndexSet*     selectedIndexes;
     
     // 検索スレッド内で参照する変数
     NSString*       target;
     NSString*       keyword;
     NSString*       toolDir;
     NSString*       searchError;
+    
+    QLPreviewPanel* previewPanel;
 }
 
 @synthesize searchResult;
@@ -39,6 +44,7 @@
 @synthesize searchFieldControl;
 @synthesize toolbar;
 @synthesize pinButton;
+@synthesize selectedIndexes;
 
 //-----------------------------------------------------------------------------------------
 // NSDocument クラスメソッド：ドキュメントの振る舞い
@@ -97,6 +103,9 @@
     
     // Pinボタンの状態設定
     [pinButton setState:isPinned ? NSOnState : NSOffState];
+    
+    // Quick Lock用delegate登録
+    searchResult.qlDelegate = self;
 }
 
 //----------------------------------------------------------------------
@@ -122,7 +131,8 @@
         isFolder = NO;
         isPinned = YES;
     }
-        
+    baseDir = [[absoluteURL path] stringByDeletingLastPathComponent];
+    
     return YES;    
 }
 
@@ -174,7 +184,7 @@
     while (index != NSNotFound){
         PathEntry* pe = [pathList objectAtIndex:index];
         
-        NSString* path = [pe absolutePathWithBaseDirectory:[[[self fileURL] path] stringByDeletingLastPathComponent]];
+        NSString* path = [pe absolutePath];
         [items addObject:[NSURL fileURLWithPath:path]];
         
         index = [rowIndexes indexGreaterThanIndex:index];
@@ -183,6 +193,22 @@
     [pboard writeObjects:items];
     
     return YES;
+}
+
+//-----------------------------------------------------------------------------------------
+// 検索結果リストのbindings (選択リスト)
+//-----------------------------------------------------------------------------------------
+- (NSIndexSet*)selectedIndexes
+{
+    return selectedIndexes;
+}
+
+- (void) setSelectedIndexes:(NSIndexSet*)indexes
+{
+    if (indexes != selectedIndexes){
+        selectedIndexes = indexes;
+        [previewPanel reloadData];
+    }
 }
 
 //-----------------------------------------------------------------------------------------
@@ -216,7 +242,7 @@
         
         // 検索結果リスト生成
         for (NSString* line = [cmd nextLine]; line; line = [cmd nextLine]){
-            PathEntry* pe = [[PathEntry alloc] initWithPhrase:line];
+            PathEntry* pe = [[PathEntry alloc] initWithPhrase:line base:baseDir];
             [pathList addObject:pe];
         }
         
@@ -273,6 +299,7 @@
             
             [self performSelectorInBackground:@selector(createPathList) withObject:nil];
             [searchResult reloadData];
+            [[self windowForSheet] makeFirstResponder:searchResult];
         }
     }else{
         [self beginErrorSheetWithTitle:@"Error" message:@"Another searching task has already invoked."];
@@ -280,7 +307,7 @@
 }
 
 //-----------------------------------------------------------------------------------------
-// 検索アクセラレータへの応答 （検索フィールドにフォーカス移動）
+// 検索フィールドにフォーカス移動
 //-----------------------------------------------------------------------------------------
 - (void)performFindPanelAction:(id)sender
 {
@@ -313,6 +340,11 @@
         [toolbar setVisible:YES];
     }
     
+    // ツールバーの表示モードが「ラベルのみ」の場合はアイコンを表示
+    if ([toolbar displayMode] == NSToolbarDisplayModeLabelOnly){
+        [toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
+    }
+    
     // 検索フィールドをfirst responderに変更
     [[self windowForSheet] makeFirstResponder:searchFieldControl];
 }
@@ -322,15 +354,13 @@
 //-----------------------------------------------------------------------------------------
 - (void)performOpenItemsAction:(id)sender
 {
-    NSIndexSet* indexes = [searchResult selectedRowIndexes];
-    NSUInteger i = [indexes firstIndex];
+    NSUInteger i = [selectedIndexes firstIndex];
     while (i != NSNotFound){
         PathEntry* pe = [pathList objectAtIndex:i];
-        NSString* path = [pe absolutePathWithBaseDirectory:
-                          [[[self fileURL] path] stringByDeletingLastPathComponent]];
+        NSString* path = [pe absolutePath];
         [self openItem:path];
 
-        i = [indexes indexGreaterThanIndex:i];
+        i = [selectedIndexes indexGreaterThanIndex:i];
     }
 }
 
@@ -339,15 +369,13 @@
 //-----------------------------------------------------------------------------------------
 - (void)performOpenFolderAction:(id)sender
 {
-    NSIndexSet* indexes = [searchResult selectedRowIndexes];
-    NSUInteger i = [indexes firstIndex];
+    NSUInteger i = [selectedIndexes firstIndex];
     while (i != NSNotFound){
         PathEntry* pe = [pathList objectAtIndex:i];
-        NSString* path = [pe absolutePathWithBaseDirectory:
-                          [[[self fileURL] path] stringByDeletingLastPathComponent]];
+        NSString* path = [pe absolutePath];
         [self openItem:[path stringByDeletingLastPathComponent]];
         
-        i = [indexes indexGreaterThanIndex:i];
+        i = [selectedIndexes indexGreaterThanIndex:i];
     }
 }
 
@@ -402,6 +430,142 @@
 {
     isPinned = [pinnedFile exist];
     [pinButton setState:isPinned ? NSOnState : NSOffState];
+}
+
+//-----------------------------------------------------------------------------------------
+// Quick Look パネルの ON/OFF
+//-----------------------------------------------------------------------------------------
+- (void)togglePreviewPanel:(id)sender
+{
+    if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible]) {
+        [[QLPreviewPanel sharedPreviewPanel] orderOut:nil];
+    } else {
+        [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:nil];
+    }
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    SEL action = [menuItem action];
+    if (action == @selector(togglePreviewPanel:)) {
+        if ([selectedIndexes count] > 0){
+            if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible]) {
+                [menuItem setTitle:@"Close Quick Look panel"];
+            } else {
+                [menuItem setTitle:@"Open Quick Look panel"];
+            }
+            return YES;
+        }else{
+            return NO;
+        }
+    } else if (action == @selector(performOpenItemsAction:) || action == @selector(performOpenFolderAction:)){
+        return [selectedIndexes count] > 0;
+    }
+    return YES;
+}
+
+//-----------------------------------------------------------------------------------------
+// Quick Look サポート
+//-----------------------------------------------------------------------------------------
+- (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel;
+{
+    return YES;
+}
+
+- (void)beginPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    previewPanel = panel;
+    panel.delegate = self;
+    panel.dataSource = self;
+}
+
+- (void)endPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    previewPanel = nil;
+}
+
+//-----------------------------------------------------------------------------------------
+// Quick Look データソース
+//-----------------------------------------------------------------------------------------
+- (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel *)panel
+{
+    return [selectedIndexes count];
+}
+
+- (id <QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)index
+{
+    if (isUpdatingList || !pathList){
+        return nil;
+    }
+    
+    NSUInteger i = [selectedIndexes firstIndex];
+    for (NSInteger j = 0; j < index && i != NSNotFound; j++){
+        i = [selectedIndexes indexGreaterThanIndex:i];
+    }
+    
+    return i == NSNotFound ? nil : [pathList objectAtIndex:i];
+}
+
+//-----------------------------------------------------------------------------------------
+// Quick Look data delegate
+//-----------------------------------------------------------------------------------------
+
+// Quick Look パネルのイベントdelegate
+- (BOOL)previewPanel:(QLPreviewPanel *)panel handleEvent:(NSEvent *)event
+{
+    // redirect all key down events to the table view
+    if ([event type] == NSKeyDown) {
+        [searchResult keyDown:event];
+        return YES;
+    }
+    return NO;
+}
+
+// Quick Look パネル拡大の始点、縮小の終点の矩形返却
+static NSRect centerFitRect(NSImage *image, NSRect targetRect)
+{
+    NSSize imageSize = [image size];
+    CGFloat aspectRatio = imageSize.width / imageSize.height;
+    CGFloat newWidth = targetRect.size.height * aspectRatio;
+    NSSize fitSize = NSMakeSize(newWidth, targetRect.size.height);
+    CGFloat left = (targetRect.size.width - fitSize.width) * 0.5;
+    return NSMakeRect(left, targetRect.origin.y, fitSize.width, fitSize.height);
+}
+
+- (NSRect)previewPanel:(QLPreviewPanel *)panel sourceFrameOnScreenForPreviewItem:(id <QLPreviewItem>)item
+{
+    NSInteger col = [searchResult columnWithIdentifier:@"icon"];
+    NSInteger row = [searchResult selectedRow];
+    NSRect rect = [searchResult frameOfCellAtColumn:col row:row];
+    NSCell *cell = [searchResult preparedCellAtColumn:col row:row];
+    NSRect selectionFrame = [cell imageRectForBounds:rect];
+    selectionFrame = centerFitRect([cell image], selectionFrame);
+    
+    if(!NSIntersectsRect([searchResult visibleRect], selectionFrame)) {
+        return NSZeroRect;
+    }
+    
+    NSView* currentview = searchResult;
+    NSView* superview = [currentview superview];
+    while (superview){
+        selectionFrame = [currentview convertRect:selectionFrame toView:superview];
+        currentview = superview;
+        superview = [currentview superview];
+    }
+    selectionFrame.origin = [[searchResult window] convertBaseToScreen:selectionFrame.origin];
+    
+    return selectionFrame;
+}
+
+// Quick Look パネル拡大・縮小時のイメージ返却
+- (id)previewPanel:(QLPreviewPanel *)panel transitionImageForPreviewItem:(id <QLPreviewItem>)item contentRect:(NSRect *)contentRect
+{
+    PathEntry* pe = (PathEntry*)item;
+    if (pe.isDirectory){
+        return [[NSWorkspace sharedWorkspace] iconForFile:@"/var"];
+    }else{
+        return [[NSWorkspace sharedWorkspace] iconForFileType:[pe.name pathExtension]];
+    }
 }
 
 @end

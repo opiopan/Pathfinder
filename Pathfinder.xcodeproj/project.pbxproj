@@ -11,6 +11,7 @@
 		7B6BCC8E16697AF100B573C5 /* CreatingPinnedFile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B6BCC8D16697AF100B573C5 /* CreatingPinnedFile.xib */; };
 		7B84549E166A2A1600D406B2 /* PinnedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B84549D166A2A1600D406B2 /* PinnedFile.m */; };
 		7B8454A2166A4A4E00D406B2 /* CreatingPinnedFileSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8454A1166A4A4E00D406B2 /* CreatingPinnedFileSheet.m */; };
+		7B8E568516742DBE00760F0A /* PathfinderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8E568416742DBE00760F0A /* PathfinderTableView.m */; };
 		7BBF7257155F9B5D00CD0F74 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBF7256155F9B5D00CD0F74 /* Cocoa.framework */; };
 		7BBF7261155F9B5E00CD0F74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BBF725F155F9B5E00CD0F74 /* InfoPlist.strings */; };
 		7BBF7263155F9B5E00CD0F74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF7262155F9B5E00CD0F74 /* main.m */; };
@@ -26,6 +27,8 @@
 		7BC5488016639C010022E683 /* Pathfinder.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BC5487F16639C010022E683 /* Pathfinder.icns */; };
 		7BE2F263166EB1B500295655 /* ChildProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2F262166EB1B500295655 /* ChildProcess.m */; };
 		7BF64CCF1663AD1600A25C99 /* SerchFieldWithProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */; };
+		7BF689ED1673866B0046FE90 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF689EC1673866B0046FE90 /* QuickLook.framework */; };
+		7BF689EF1673867F0046FE90 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF689EE1673867F0046FE90 /* Quartz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +52,8 @@
 		7B84549D166A2A1600D406B2 /* PinnedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedFile.m; sourceTree = "<group>"; };
 		7B8454A0166A4A4E00D406B2 /* CreatingPinnedFileSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatingPinnedFileSheet.h; sourceTree = "<group>"; };
 		7B8454A1166A4A4E00D406B2 /* CreatingPinnedFileSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatingPinnedFileSheet.m; sourceTree = "<group>"; };
+		7B8E568316742DBE00760F0A /* PathfinderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathfinderTableView.h; sourceTree = "<group>"; };
+		7B8E568416742DBE00760F0A /* PathfinderTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathfinderTableView.m; sourceTree = "<group>"; };
 		7BBF7252155F9B5D00CD0F74 /* Pathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BBF7256155F9B5D00CD0F74 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7BBF7259155F9B5D00CD0F74 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -72,6 +77,8 @@
 		7BE2F262166EB1B500295655 /* ChildProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildProcess.m; sourceTree = "<group>"; };
 		7BF64CCD1663AD1600A25C99 /* SerchFieldWithProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerchFieldWithProgressCell.h; sourceTree = "<group>"; };
 		7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerchFieldWithProgressCell.m; sourceTree = "<group>"; };
+		7BF689EC1673866B0046FE90 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		7BF689EE1673867F0046FE90 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BF689EF1673867F0046FE90 /* Quartz.framework in Frameworks */,
+				7BF689ED1673866B0046FE90 /* QuickLook.framework in Frameworks */,
 				7BBF7257155F9B5D00CD0F74 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				7BBF7256155F9B5D00CD0F74 /* Cocoa.framework */,
+				7BF689EE1673867F0046FE90 /* Quartz.framework */,
+				7BF689EC1673866B0046FE90 /* QuickLook.framework */,
 				7BBF7258155F9B5D00CD0F74 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -160,6 +171,8 @@
 				7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */,
 				7BE2F261166EB1B500295655 /* ChildProcess.h */,
 				7BE2F262166EB1B500295655 /* ChildProcess.m */,
+				7B8E568316742DBE00760F0A /* PathfinderTableView.h */,
+				7B8E568416742DBE00760F0A /* PathfinderTableView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -263,6 +276,7 @@
 				7B84549E166A2A1600D406B2 /* PinnedFile.m in Sources */,
 				7B8454A2166A4A4E00D406B2 /* CreatingPinnedFileSheet.m in Sources */,
 				7BE2F263166EB1B500295655 /* ChildProcess.m in Sources */,
+				7B8E568516742DBE00760F0A /* PathfinderTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
