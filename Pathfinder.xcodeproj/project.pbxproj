@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7B14691F1665003500E07CB8 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B14691E1665003500E07CB8 /* pin.png */; };
-		7B6BCC8E16697AF100B573C5 /* CreatingPinnedFile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B6BCC8D16697AF100B573C5 /* CreatingPinnedFile.xib */; };
 		7B84549E166A2A1600D406B2 /* PinnedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B84549D166A2A1600D406B2 /* PinnedFile.m */; };
 		7B8454A2166A4A4E00D406B2 /* CreatingPinnedFileSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8454A1166A4A4E00D406B2 /* CreatingPinnedFileSheet.m */; };
 		7B8E568516742DBE00760F0A /* PathfinderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8E568416742DBE00760F0A /* PathfinderTableView.m */; };
@@ -29,6 +28,8 @@
 		7BF64CCF1663AD1600A25C99 /* SerchFieldWithProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */; };
 		7BF689ED1673866B0046FE90 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF689EC1673866B0046FE90 /* QuickLook.framework */; };
 		7BF689EF1673867F0046FE90 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF689EE1673867F0046FE90 /* Quartz.framework */; };
+		7BFF370C16778203008CDB88 /* CreatingPinnedFile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BFF370E16778203008CDB88 /* CreatingPinnedFile.xib */; };
+		7BFF37121677EB9E008CDB88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BFF37141677EB9E008CDB88 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		7B14691E1665003500E07CB8 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = resources/pin.png; sourceTree = "<group>"; };
-		7B6BCC8D16697AF100B573C5 /* CreatingPinnedFile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatingPinnedFile.xib; sourceTree = "<group>"; };
 		7B84549C166A2A1600D406B2 /* PinnedFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedFile.h; sourceTree = "<group>"; };
 		7B84549D166A2A1600D406B2 /* PinnedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedFile.m; sourceTree = "<group>"; };
 		7B8454A0166A4A4E00D406B2 /* CreatingPinnedFileSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatingPinnedFileSheet.h; sourceTree = "<group>"; };
@@ -79,6 +79,13 @@
 		7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerchFieldWithProgressCell.m; sourceTree = "<group>"; };
 		7BF689EC1673866B0046FE90 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		7BF689EE1673867F0046FE90 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		7BFF37081677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7BFF37091677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/Document.xib; sourceTree = "<group>"; };
+		7BFF370A1677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7BFF370B1677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Credits.rtf; sourceTree = "<group>"; };
+		7BFF370D16778203008CDB88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CreatingPinnedFile.xib; sourceTree = "<group>"; };
+		7BFF370F1677820A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/CreatingPinnedFile.xib; sourceTree = "<group>"; };
+		7BFF37131677EB9E008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,9 +189,10 @@
 			children = (
 				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
 				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
-				7B6BCC8D16697AF100B573C5 /* CreatingPinnedFile.xib */,
+				7BFF370E16778203008CDB88 /* CreatingPinnedFile.xib */,
 				7B14691E1665003500E07CB8 /* pin.png */,
 				7BC5487F16639C010022E683 /* Pathfinder.icns */,
+				7BFF37141677EB9E008CDB88 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
 			);
 			mainGroup = 7BBF7247155F9B5D00CD0F74;
 			productRefGroup = 7BBF7253155F9B5D00CD0F74 /* Products */;
@@ -258,7 +267,8 @@
 				7BC5487516625A6F0022E683 /* searchFile in Resources */,
 				7BC5488016639C010022E683 /* Pathfinder.icns in Resources */,
 				7B14691F1665003500E07CB8 /* pin.png in Resources */,
-				7B6BCC8E16697AF100B573C5 /* CreatingPinnedFile.xib in Resources */,
+				7BFF370C16778203008CDB88 /* CreatingPinnedFile.xib in Resources */,
+				7BFF37121677EB9E008CDB88 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +297,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BBF7260155F9B5E00CD0F74 /* en */,
+				7BFF370A1677819A008CDB88 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -295,6 +306,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BBF7266155F9B5E00CD0F74 /* en */,
+				7BFF370B1677819A008CDB88 /* ja */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -303,6 +315,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BBF726C155F9B5E00CD0F74 /* en */,
+				7BFF37091677819A008CDB88 /* ja */,
 			);
 			name = Document.xib;
 			sourceTree = "<group>";
@@ -311,8 +324,26 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BBF726F155F9B5E00CD0F74 /* en */,
+				7BFF37081677819A008CDB88 /* ja */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		7BFF370E16778203008CDB88 /* CreatingPinnedFile.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7BFF370D16778203008CDB88 /* en */,
+				7BFF370F1677820A008CDB88 /* ja */,
+			);
+			name = CreatingPinnedFile.xib;
+			sourceTree = "<group>";
+		};
+		7BFF37141677EB9E008CDB88 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7BFF37131677EB9E008CDB88 /* ja */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -18,7 +18,6 @@
     NSString* key = [theEvent charactersIgnoringModifiers];
     if([key isEqual:@" "]) {
         if ([self selectedRow] != -1){
-            //[[NSApp delegate] togglePreviewPanel:self];
             [qlDelegate togglePreviewPanel:self];
         }
     } else {

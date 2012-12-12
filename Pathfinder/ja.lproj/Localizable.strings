@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings (Japanese)
+  Pathfinder
+
+  Created by opiopan on 2012/12/12.
+
+*/
+
+"Open Quick Look panel" = "クイックルックを開く";
+"Close Quick Look panel" = "クイックルックを閉じる";
+"An error occurred when invoking search task." = "検索タスクを起動する際、エラーが発生しました。";
+"An error occurred while searching files." = "ファイル検索中にエラーが発生しました。";
+"Another searching task has already invoked." = "既に検索タスクを実行しています。";
+"Do you want to delete pinned file?" = "ピン留めファイルを削除しますか?";
+"An error occured while creating a pinned file." = "ピン留めファイル作成中にエラーが発生しました。";
+
+"Yes" = "はい";
+"No" = "いいえ";
+"Error" = "エラー";
+"Confirmation" = "確認";

@@ -236,7 +236,7 @@
         
         // 検索コマンド起動
         if (![cmd executeForInput]){
-            searchError = @"An error occurred when invoking search task.";
+            searchError = NSLocalizedString(@"An error occurred when invoking search task.", nil);
             goto END;
         }
         
@@ -249,7 +249,7 @@
         // 検索コマンドの終了コード判定
         int rc = [cmd result];
         if (rc < 0 || !WIFEXITED(rc) || WEXITSTATUS(rc) != 0){
-            searchError = @"An error occurred while searching files.";
+            searchError = NSLocalizedString(@"An error occurred while searching files.", nil);
             goto END;
         }
 
@@ -262,7 +262,7 @@
 - (void)finishCreaingPathList
 {
     if (searchError){
-        [self beginErrorSheetWithTitle:@"Error" message:searchError];
+        [self beginErrorSheetWithTitle:NSLocalizedString(@"Error", nil) message:searchError];
         pathList = nil;
     }
     isUpdatingList = NO;
@@ -302,7 +302,8 @@
             [[self windowForSheet] makeFirstResponder:searchResult];
         }
     }else{
-        [self beginErrorSheetWithTitle:@"Error" message:@"Another searching task has already invoked."];
+        [self beginErrorSheetWithTitle:NSLocalizedString(@"Error", nil)
+                               message:NSLocalizedString(@"Another searching task has already invoked.", nil)];
     }
 }
 
@@ -396,10 +397,11 @@
     if (isFolder){
         if (isPinned){
             // ピン留めファイルの削除確認
-            NSBeginAlertSheet(@"Confirmation", @"No", @"Yes", nil,
+            NSBeginAlertSheet(NSLocalizedString(@"Confirmation", nil),
+                              NSLocalizedString(@"No", nil), NSLocalizedString(@"Yes", nil), nil,
                               [self windowForSheet], self,
                               nil, @selector(confirmDeletePinnedFileSheetEnd:returnCode:contextInfo:),
-                              nil, @"Do you want to delete pinned file?");
+                              nil, NSLocalizedString(@"Do you want to delete pinned file?", nil));
         }else{
             if ([pinnedFile exist]){
                 isPinned = YES;
@@ -450,9 +452,9 @@
     if (action == @selector(togglePreviewPanel:)) {
         if ([selectedIndexes count] > 0){
             if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible]) {
-                [menuItem setTitle:@"Close Quick Look panel"];
+                [menuItem setTitle:NSLocalizedString(@"Close Quick Look panel",nil)];
             } else {
-                [menuItem setTitle:@"Open Quick Look panel"];
+                [menuItem setTitle:NSLocalizedString(@"Open Quick Look panel",nil)];
             }
             return YES;
         }else{

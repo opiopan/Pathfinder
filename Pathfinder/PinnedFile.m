@@ -95,9 +95,9 @@ static const NSString* PINNED_PFLIST=@".Pathfinder.pflist";
 {
     sheet = nil;
     if (!succeedToCreate){
-        NSBeginCriticalAlertSheet(@"Error", @"OK", nil, nil,
+        NSBeginCriticalAlertSheet(NSLocalizedString(@"Error", nil), NSLocalizedString(@"OK", nil), nil, nil,
                                   modalWindow, self, nil, nil, nil,
-                                  @"An error occured while creating a pinned file.");
+                                  NSLocalizedString(@"An error occured while creating a pinned file.", nil));
     }
     [modalDelegate performSelector:endSelector withObject:nil afterDelay:0.0f];
 }
