@@ -79,13 +79,13 @@
 		7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerchFieldWithProgressCell.m; sourceTree = "<group>"; };
 		7BF689EC1673866B0046FE90 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		7BF689EE1673867F0046FE90 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		7BFF37081677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		7BFF37091677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/Document.xib; sourceTree = "<group>"; };
 		7BFF370A1677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7BFF370B1677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Credits.rtf; sourceTree = "<group>"; };
 		7BFF370D16778203008CDB88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CreatingPinnedFile.xib; sourceTree = "<group>"; };
-		7BFF370F1677820A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/CreatingPinnedFile.xib; sourceTree = "<group>"; };
 		7BFF37131677EB9E008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7BFF371B167BFB23008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CreatingPinnedFile.strings; sourceTree = "<group>"; };
+		7BFF371D167BFB23008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Document.strings; sourceTree = "<group>"; };
+		7BFF371F167BFB23008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,8 +188,11 @@
 			isa = PBXGroup;
 			children = (
 				7BBF726E155F9B5E00CD0F74 /* MainMenu.xib */,
+				7BFF371E167BFB23008CDB88 /* MainMenu.strings */,
 				7BBF726B155F9B5E00CD0F74 /* Document.xib */,
+				7BFF371C167BFB23008CDB88 /* Document.strings */,
 				7BFF370E16778203008CDB88 /* CreatingPinnedFile.xib */,
+				7BFF371A167BFB23008CDB88 /* CreatingPinnedFile.strings */,
 				7B14691E1665003500E07CB8 /* pin.png */,
 				7BC5487F16639C010022E683 /* Pathfinder.icns */,
 				7BFF37141677EB9E008CDB88 /* Localizable.strings */,
@@ -218,6 +221,7 @@
 				7BBF724F155F9B5D00CD0F74 /* Frameworks */,
 				7BBF7250155F9B5D00CD0F74 /* Resources */,
 				7BC5487616625AEC0022E683 /* CopyFiles */,
+				7BFF3724167BFC10008CDB88 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -274,6 +278,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7BFF3724167BFC10008CDB88 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Pathfinder/ja.lproj/MainMenu.strings",
+				"$(SRCROOT)/Pathfinder/en.lproj/MainMenu.xib",
+				"$(SRCROOT)/Pathfinder/ja.lproj/Document.strings",
+				"$(SRCROOT)/Pathfinder/en.lproj/Document.xib",
+				"$(SRCROOT)/Pathfinder/ja.lproj/CreatingPinnedFile.strings",
+				"$(SRCROOT)/Pathfinder/en.lproj/CreatingPinnedFile.xib",
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ja.lproj/MainMenu.nib",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ja.lproj/Document.nib",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ja.lproj/CreatingPinnedFile.nib",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "for f in MainMenu Document CreatingPinnedFile;do\nibtool --import-strings-file Pathfinder/ja.lproj/${f}.strings --compile \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ja.lproj/${f}.nib\" --output-format binary1 Pathfinder/en.lproj/${f}.xib || exit 1\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7BBF724E155F9B5D00CD0F74 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -315,7 +344,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BBF726C155F9B5E00CD0F74 /* en */,
-				7BFF37091677819A008CDB88 /* ja */,
 			);
 			name = Document.xib;
 			sourceTree = "<group>";
@@ -324,7 +352,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BBF726F155F9B5E00CD0F74 /* en */,
-				7BFF37081677819A008CDB88 /* ja */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -333,7 +360,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BFF370D16778203008CDB88 /* en */,
-				7BFF370F1677820A008CDB88 /* ja */,
 			);
 			name = CreatingPinnedFile.xib;
 			sourceTree = "<group>";
@@ -344,6 +370,30 @@
 				7BFF37131677EB9E008CDB88 /* ja */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		7BFF371A167BFB23008CDB88 /* CreatingPinnedFile.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7BFF371B167BFB23008CDB88 /* ja */,
+			);
+			name = CreatingPinnedFile.strings;
+			sourceTree = "<group>";
+		};
+		7BFF371C167BFB23008CDB88 /* Document.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7BFF371D167BFB23008CDB88 /* ja */,
+			);
+			name = Document.strings;
+			sourceTree = "<group>";
+		};
+		7BFF371E167BFB23008CDB88 /* MainMenu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7BFF371F167BFB23008CDB88 /* ja */,
+			);
+			name = MainMenu.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
