@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7BE6BC5C168D588700C68BD5 /* Install Disk Image */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7BE6BC5F168D588700C68BD5 /* Build configuration list for PBXAggregateTarget "Install Disk Image" */;
+			buildPhases = (
+				7BE6BC63168D58B400C68BD5 /* ShellScript */,
+			);
+			dependencies = (
+				7BE6BC62168D58A600C68BD5 /* PBXTargetDependency */,
+			);
+			name = "Install Disk Image";
+			productName = "Install Disk Image";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7B14691F1665003500E07CB8 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B14691E1665003500E07CB8 /* pin.png */; };
 		7B84549E166A2A1600D406B2 /* PinnedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B84549D166A2A1600D406B2 /* PinnedFile.m */; };
@@ -31,6 +46,16 @@
 		7BFF370C16778203008CDB88 /* CreatingPinnedFile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BFF370E16778203008CDB88 /* CreatingPinnedFile.xib */; };
 		7BFF37121677EB9E008CDB88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BFF37141677EB9E008CDB88 /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7BE6BC61168D58A600C68BD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BBF7249155F9B5D00CD0F74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BBF7251155F9B5D00CD0F74;
+			remoteInfo = Pathfinder;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7BC5487616625AEC0022E683 /* CopyFiles */ = {
@@ -79,6 +104,8 @@
 		7BF64CCE1663AD1600A25C99 /* SerchFieldWithProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerchFieldWithProgressCell.m; sourceTree = "<group>"; };
 		7BF689EC1673866B0046FE90 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		7BF689EE1673867F0046FE90 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		7BF851DF168F1A4B00D3CC84 /* Pathfinder-in.sparseimage */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pathfinder-in.sparseimage"; path = "DiskImageResources/Pathfinder-in.sparseimage"; sourceTree = "<group>"; };
+		7BF851E0168F1A4B00D3CC84 /* PathfinderBackground.idraw */ = {isa = PBXFileReference; lastKnownFileType = file; name = PathfinderBackground.idraw; path = DiskImageResources/PathfinderBackground.idraw; sourceTree = "<group>"; };
 		7BFF370A1677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7BFF370B1677819A008CDB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Credits.rtf; sourceTree = "<group>"; };
 		7BFF370D16778203008CDB88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CreatingPinnedFile.xib; sourceTree = "<group>"; };
@@ -147,6 +174,7 @@
 				7BBF7280155F9E0D00CD0F74 /* Resources */,
 				7BBF725D155F9B5D00CD0F74 /* Supporting Files */,
 				7BC5485D16619DC30022E683 /* Coprograms */,
+				7BE6BC64168D6A4500C68BD5 /* Disk Image Resources */,
 			);
 			path = Pathfinder;
 			sourceTree = "<group>";
@@ -210,6 +238,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		7BE6BC64168D6A4500C68BD5 /* Disk Image Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7BF851DF168F1A4B00D3CC84 /* Pathfinder-in.sparseimage */,
+				7BF851E0168F1A4B00D3CC84 /* PathfinderBackground.idraw */,
+			);
+			name = "Disk Image Resources";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -254,6 +291,7 @@
 			projectRoot = "";
 			targets = (
 				7BBF7251155F9B5D00CD0F74 /* Pathfinder */,
+				7BE6BC5C168D588700C68BD5 /* Install Disk Image */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +317,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7BE6BC63168D58B400C68BD5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Pathfinder/DiskImageResources/Pathfinder-in.sparseimage",
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/Pathfinder.dmg",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SRC=\"${SRCROOT}/Pathfinder/DiskImageResources/Pathfinder-in.sparseimage\"\nIN=\"${DERIVED_FILE_DIR}/Pathfinder-in.sparseimage\"\nMP=\"${DERIVED_FILE_DIR}/mp\"\nOUT=\"${TARGET_BUILD_DIR}/Pathfinder.dmg\"\nrm -rf \"${DERIVED_FILE_DIR}\"\nmkdir \"${DERIVED_FILE_DIR}\"\nmkdir \"$MP\"\ncp \"$SRC\" \"$IN\"\nhdiutil attach \"$IN\" -mountpoint \"$MP\"\nrm -rf \"$MP\"/Pathfinder.app\ncp -r \"${TARGET_BUILD_DIR}/Pathfinder.app\" \"$MP\"\nhdiutil detach \"$MP\"\nrm -f \"$OUT\"\nhdiutil convert -format UDZO -o \"$OUT\" \"$IN\"\nrm -r \"$MP\"\nrm -f \"$IN\"";
+		};
 		7BFF3724167BFC10008CDB88 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,6 +373,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7BE6BC62168D58A600C68BD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BBF7251155F9B5D00CD0F74 /* Pathfinder */;
+			targetProxy = 7BE6BC61168D58A600C68BD5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7BBF725F155F9B5E00CD0F74 /* InfoPlist.strings */ = {
@@ -472,6 +533,20 @@
 			};
 			name = Release;
 		};
+		7BE6BC5D168D588700C68BD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7BE6BC5E168D588700C68BD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,6 +564,15 @@
 			buildConfigurations = (
 				7BBF7274155F9B5E00CD0F74 /* Debug */,
 				7BBF7275155F9B5E00CD0F74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7BE6BC5F168D588700C68BD5 /* Build configuration list for PBXAggregateTarget "Install Disk Image" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BE6BC5D168D588700C68BD5 /* Debug */,
+				7BE6BC5E168D588700C68BD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
