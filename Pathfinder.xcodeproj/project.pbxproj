@@ -330,7 +330,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SRC=\"${SRCROOT}/Pathfinder/DiskImageResources/Pathfinder-in.sparseimage\"\nIN=\"${DERIVED_FILE_DIR}/Pathfinder-in.sparseimage\"\nMP=\"${DERIVED_FILE_DIR}/mp\"\nOUT=\"${TARGET_BUILD_DIR}/Pathfinder.dmg\"\nrm -rf \"${DERIVED_FILE_DIR}\"\nmkdir \"${DERIVED_FILE_DIR}\"\nmkdir \"$MP\"\ncp \"$SRC\" \"$IN\"\nhdiutil attach \"$IN\" -mountpoint \"$MP\"\nrm -rf \"$MP\"/Pathfinder.app\ncp -r \"${TARGET_BUILD_DIR}/Pathfinder.app\" \"$MP\"\nhdiutil detach \"$MP\"\nrm -f \"$OUT\"\nhdiutil convert -format UDZO -o \"$OUT\" \"$IN\"\nrm -r \"$MP\"\nrm -f \"$IN\"";
+			shellScript = "PRODUCT=Pathfinder\nSRC=\"${SRCROOT}/${PRODUCT}/DiskImageResources/${PRODUCT}-in.sparseimage\"\nIN=\"${DERIVED_FILE_DIR}/${PRODUCT}-in.sparseimage\"\nMP=\"${DERIVED_FILE_DIR}/mp\"\nOUT=\"${TARGET_BUILD_DIR}/${PRODUCT}.dmg\"\nrm -rf \"${DERIVED_FILE_DIR}\"\nmkdir \"${DERIVED_FILE_DIR}\"\nmkdir \"$MP\"\ncp \"$SRC\" \"$IN\"\nhdiutil attach \"$IN\" -mountpoint \"$MP\"\nrm -rf \"$MP\"/${PRODUCT}.app\ncp -r \"${TARGET_BUILD_DIR}/${PRODUCT}.app\" \"$MP\"\nhdiutil detach \"$MP\"\nrm -f \"$OUT\"\nhdiutil convert -format UDZO -o \"$OUT\" \"$IN\"\nrm -r \"$MP\"\nrm -f \"$IN\"";
 		};
 		7BFF3724167BFC10008CDB88 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
