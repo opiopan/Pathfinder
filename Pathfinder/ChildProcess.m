@@ -88,7 +88,7 @@
     [command appendString:str];
 }
 
-- (void)appendCommandWithFormat:(NSString*)fmt arguments:(__va_list_tag *)argList
+- (void)appendCommandWithFormat:(NSString*)fmt arguments:(va_list)argList
 {
     [command appendString:[[NSString alloc] initWithFormat:fmt arguments:argList]];
 }

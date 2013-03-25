@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <stdarg.h>
 
 @interface ChildProcess : NSObject
 
@@ -19,7 +20,7 @@
 + (ChildProcess*)childProcessWithFormat:(NSString*)fmt, ...;
 
 - (void)appendCommandWithString:(NSString*)str;
-- (void)appendCommandWithFormat:(NSString*)fmt arguments:(__va_list_tag *)argList;
+- (void)appendCommandWithFormat:(NSString*)fmt arguments:(va_list)argList;
 - (void)appendCommandWithFormat:(NSString*)fmt, ...;
 
 - (int) execute;
